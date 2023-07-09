@@ -26,6 +26,10 @@ choco install vagrant -y
 REM Change directory to %USERPROFILE%
 cd /d "%USERPROFILE%"
 
+REM Create Vagrant folder
+mkdir Vagrant
+cd Vagrant
+
 REM Create Vagrantfile
 (
   echo Vagrant.configure("2") do ^|config^|
