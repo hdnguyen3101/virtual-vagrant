@@ -22,19 +22,14 @@ VBoxManage setproperty machinefolder "$vm_path"
 # Install Vagrant
 brew install --cask vagrant
 
-# Change directory to $HOME
-cd $HOME
+# Create Vagrant directory if it doesn't exist
+mkdir -p $HOME/Vagrant
 
-# Create Vagrantfile
-cat > Vagrantfile <<EOF
-Vagrant.configure("2") do |config|
-  config.vm.box = "hdnguyen3101/window-10-pro-class"
-  config.vm.box_version = "0.1.0"
-  config.vm.provider "virtualbox" do |vb|
-    vb.gui = true
-  end
-end
-EOF
+# Copy Vagrantfile to $HOME/Vagrant
+cp Vagrantfile $HOME/Vagrant/Vagrantfile
+
+# Change directory to $HOME/Vagrant
+cd $HOME/Vagrant
 
 # Execute the vagrant up command
 vagrant up

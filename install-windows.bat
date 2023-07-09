@@ -14,8 +14,7 @@ REM Install Virtualbox
 choco install virtualbox -y
 
 REM Prompt for the virtual machine path
-echo Enter the virtual machine path:
-set /p vm_path=
+set /p vm_path="Enter the virtual machine path: "
 
 REM Set the virtual machine path
 REG ADD "HKLM\SOFTWARE\Oracle\VirtualBox" /v "Global\DefaultMachineFolder" /t REG_SZ /d "%vm_path%" /f
@@ -23,23 +22,14 @@ REG ADD "HKLM\SOFTWARE\Oracle\VirtualBox" /v "Global\DefaultMachineFolder" /t RE
 REM Install Vagrant
 choco install vagrant -y
 
-REM Change directory to %USERPROFILE%
-cd /d "%USERPROFILE%"
+REM Create Vagrant directory if it doesn't exist
+mkdir %USERPROFILE%\Vagrant
 
-REM Create Vagrant folder
-mkdir Vagrant
-cd Vagrant
+REM Copy Vagrantfile to %USERPROFILE%\Vagrant
+copy Vagrantfile %USERPROFILE%\Vagrant\Vagrantfile
 
-REM Create Vagrantfile
-(
-  echo Vagrant.configure("2") do ^|config^|
-  echo   config.vm.box = "hdnguyen3101/window-10-pro-class"
-  echo   config.vm.box_version = "0.1.0"
-  echo   config.vm.provider "virtualbox" do ^|vb^|
-  echo     vb.gui = true
-  echo   end
-  echo end
-) > Vagrantfile
+REM Change directory to %USERPROFILE%\Vagrant
+cd /d %USERPROFILE%\Vagrant
 
 REM Execute the vagrant up command
 vagrant up
