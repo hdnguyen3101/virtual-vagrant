@@ -16,9 +16,8 @@ chmod +x install-macos.sh
 ./install-macos.sh
 ```
 ### 2.2. Install script for Windows
-Run the following command:
+Open cmd as administrator and run the following command:
 ```bash
 cd virtual-vagrant
-Set-ExecutionPolicy RemoteSigned -Scope Process
-.\install-windows.ps1
+install-windows.bat
 ```
