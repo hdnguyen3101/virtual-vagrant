@@ -1,7 +1,16 @@
 #!/bin/bash
 
+# Check if Homebrew is installed, install or update it
+if ! command -v brew &> /dev/null; then
+    # Homebrew is not installed, install it
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    # Homebrew is already installed, update it
+    brew update
+fi
+
 # Install Virtualbox
-brew install virtualbox
+brew install --cask virtualbox
 
 # Prompt for the virtual machine path
 echo "Enter the virtual machine path:"
@@ -11,7 +20,7 @@ read vm_path
 VBoxManage setproperty machinefolder "$vm_path"
 
 # Install Vagrant
-brew install vagrant
+brew install --cask vagrant
 
 # Change directory to $HOME
 cd $HOME
